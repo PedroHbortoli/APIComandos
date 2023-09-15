@@ -1,0 +1,17 @@
+{
+  "name": "apinodedocumentada",
+  "version": "1.0.0",
+  "description": "* Escolher local do computador para criar a pasta do projeto.\r * Abrir o gitbash na pasta criada\r ```\r mkdir NOME_PROJETO\r ```\r Acessar a pasta do projeto\r ```\r cd NOME_PROJETO\r ```\r Abrir a pasta no VSCode\r ```\r code . \r ```\r Iniciar o gerenciador de pacotes node\r ```\r npm init -y\r ```",
+  "main": "index.js",
+  "scripts": {
+    "start":"nodemon src/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "nodemon": "^3.0.1"
+  }
+}
