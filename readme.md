@@ -68,3 +68,9 @@ Rodar o comando no terminal.
 ```
 npm run start
 ```
+## Criar estrutura para o projeto
+
+Criar arquivo app.js na pasta src
+```
+touch src/app.js
+```
