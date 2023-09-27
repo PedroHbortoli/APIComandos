@@ -74,3 +74,15 @@ Criar arquivo app.js na pasta src
 ```
 touch src/app.js
 ```
+
+## Rodar o comando 'npm install' sempre que fazer um clone do gitHub
+
+## Criar o arquivo .env e o .env.example
+
+```
+touch .env
+```
+* Criar arquivo para salvar as variáveis nescessárias do aplicação sem os valores
+```
+touch .env.example
+```
