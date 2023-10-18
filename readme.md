@@ -133,3 +133,17 @@ router.delete('/api/:id', (request, responde) =>{
 
 module.exports = router;
 ```
+### CRIAÇÃO DE CONTROLLERS
+* Arquivos para processar as requisições das rotas 
+
+<hr> 
+
+### Criar pasta controllers
+```
+mkdir src/controller
+```
+
+### Criar aquivo controller.js
+```
+touch src/controller/countroller.js
+```
