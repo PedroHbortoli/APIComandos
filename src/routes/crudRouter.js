@@ -5,9 +5,9 @@ const { Router } = require('express');
 const router = Router();
 
 // Importar funções do controller para a rota acessar as funções
-const { listaDados } = require('../controllers/controller');
+const { listarDados } = require('../controllers/controller');
 
-router.get('/api', listaDados);
+router.get('/api', listarDados);
 
 router.post('/api', (request, responde) =>{
     responde.send('Metodo utilizado para salvar informações');
