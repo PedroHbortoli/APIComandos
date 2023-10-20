@@ -3,6 +3,20 @@ function listarDados(request, response) {
         console.log('get');
 }
 
+function gravarDados(request, response){
+    response.send('Metodo utilizado para salvar informações');
+}
+
+function atualizarDados(request, response){
+    response.send('Metodo utilizado para editar informações');
+}
+
+function deletarDados(request, response){
+    response.send('Metodo utilizado para deletar informações');
+}
 module.exports = {
-    listarDados
+    listarDados,
+    gravarDados,
+    atualizarDados,
+    deletarDados
 }

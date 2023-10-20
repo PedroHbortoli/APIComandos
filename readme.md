@@ -109,27 +109,19 @@ const { Router } = require('express');
 const router = Router();
 
 // Importar funções do controller para a rota acessar as funções
-const { listaDados } = require('../controllers/controller');
+const { listarDados, 
+        gravarDados,
+        atualizarDados,
+        deletarDados
+        } = require('../controllers/controller');
 
-router.get('/api', listaDados);
+router.get('/listar', listarDados);
 
-router.post('/api', (request, responde) =>{
-    responde.send('Metodo utilizado para salvar informações');
-    console.log('post');
-    console.log(request);
-});
+router.post('/gravar',gravarDados);
 
-router.put('/api/:id', (request, responde) =>{
-    responde.send('Metodo utilizado para editar informações');
-    console.log('put');
-    console.log('id:', request.params.id);
-});
+router.put('/atualizar/:id', atualizarDados);
 
-router.delete('/api/:id', (request, responde) =>{
-    responde.send('Metodo utilizado para deletar informações');
-    console.log('delete');
-    console.log('id:', request.params.id);
-});
+router.delete('/deletar/:id', deletarDados);
 
 module.exports = router;
 ```
@@ -152,10 +144,26 @@ touch src/controller/countroller.js
 ```
 function listarDados(request, response) {
         response.send('Retorno de lista de informações do bando de dados');
-        console.log('get')
+        console.log('get');
 }
 
-exports.module = {
-    listarDados
+function gravarDados(request, response){
+    response.send('Metodo utilizado para salvar informações');
+}
+
+function atualizarDados(request, response){
+    response.send('Metodo utilizado para editar informações');
+}
+
+function deletarDados(request, response){
+    response.send('Metodo utilizado para deletar informações');
+}
+module.exports = {
+    listarDados,
+    gravarDados,
+    atualizarDados,
+    deletarDados
 }
 ```
+
+* 
