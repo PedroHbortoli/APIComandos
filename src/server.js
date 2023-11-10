@@ -1,4 +1,4 @@
-// Importar o arquivo se configuração
+// Importar o arquivo se configuração(app.js)
 const app = require('./app');
 
 // Importar a porta do servidor 

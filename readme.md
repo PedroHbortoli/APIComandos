@@ -227,7 +227,7 @@ create table alunos(
     id int not null auto_increment,
     nome varchar(120) not null,
     dt_nascimento date not null,
-    primary jey(id)
+    primary key(id)
 );
 ```
 
@@ -236,6 +236,5 @@ create table alunos(
 create table users(
     id int not null auto_increment,
     ds_nome varchar(120) not null,
-    
 );
 ```
