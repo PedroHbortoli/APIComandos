@@ -36,14 +36,15 @@ async function cadastrarAluno(request, response) {
     // 2º passo: montar a query para inserir os dados
     // 3º passo: tentar executar a ação no banco
     // 4º passo: definir retornos da requisição
-
+console.log(request.body);
     // Recuperando dados da requisição
     const params = Array(
         request.body.nome,
-        request.body.dt_nascimento
+        request.body.dt_nascimento,
+        request.body.time_do_coracao
     );
 
-    const query = 'INSERT INTO alunos(nome, dt_nascimento) values(?, ?);';
+    const query = 'INSERT INTO alunos(nome, dt_nascimento, time_do_coracao) values(?, ?, ?);';
 
     connection.query(query, params, (err, results) => {
         if(results){

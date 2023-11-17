@@ -236,5 +236,6 @@ create table alunos(
 create table users(
     id int not null auto_increment,
     ds_nome varchar(120) not null,
+    primary key(id)
 );
 ```
