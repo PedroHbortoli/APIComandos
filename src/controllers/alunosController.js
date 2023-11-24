@@ -21,12 +21,12 @@ async function listarUsuarios(request, response) {
                 });
         } else {
             response
-            .status(400)
-            .json({
-                success: false,
-                massage: "Ooops ! não foi possível listar as informações solicitadas!",
-                data: results
-            });
+                .status(400)
+                .json({
+                    success: false,
+                    massage: "Ooops ! não foi possível listar as informações solicitadas!",
+                    data: results
+                });
         }
     });
 }
@@ -36,7 +36,7 @@ async function cadastrarAluno(request, response) {
     // 2º passo: montar a query para inserir os dados
     // 3º passo: tentar executar a ação no banco
     // 4º passo: definir retornos da requisição
-console.log(request.body);
+    console.log(request.body);
     // Recuperando dados da requisição
     const params = Array(
         request.body.nome,
@@ -47,7 +47,7 @@ console.log(request.body);
     const query = 'INSERT INTO alunos(nome, dt_nascimento, time_do_coracao) values(?, ?, ?);';
 
     connection.query(query, params, (err, results) => {
-        if(results){
+        if (results) {
             response
                 .status(201)
                 .json({
@@ -59,18 +59,18 @@ console.log(request.body);
     })
 }
 
-async function update (request,response) {
+async function update(request, response) {
     // Comando sqp
-    const quary = "UPDATE alunos nome = ?, dt_nascimento = ?, time_do_coracao =  ? WHERE id = ?; ";
+    const query = "UPDATE alunos SET nome = ?, dt_nascimento = ?, time_do_coracao =  ? WHERE id = ?; ";
 
     const params = Array(
         request.body.nome,
         request.body.dt_nascimento,
         request.body.time_do_coracao,
         request.params.id
-    )
+    );
 
-    connection.query (query, params, (err, results) => {
+    connection.query(query, params, (err, results) => {
         if (results) {
             response
                 .status(200)
@@ -79,6 +79,72 @@ async function update (request,response) {
                     massage: "Aluno atualizado com sucesso!",
                     data: results
                 })
+        } else {
+            response
+                .status(400)
+                .json({
+                    success: false,
+                    message: "Alunos não atualizado!",
+                    mysql: err
+                })
+        }
+    })
+}
+
+async function deleteAluno(request, response) {
+    // Comando sqp
+    const query = "DELETE FROM alunos WHERE id = ?; ";
+
+    const params = Array(
+        request.params.id
+    );
+
+    connection.query(query, params, (err, results) => {
+        if (results) {
+            response
+                .status(200)
+                .json({
+                    success: true,
+                    massage: "Aluno removido com sucesso!",
+                    data: results
+                })
+        } else {
+            response
+                .status(400)
+                .json({
+                    success: false,
+                    message: "Alunos não removido!",
+                    mysql: err
+                })
+        }
+    })
+}
+
+async function listarEspecifico(request, response) {
+    // Comando sqp
+    const query = "SELECT * FROM alunos WHERE id = ?; ";
+
+    const params = Array(
+        request.params.id
+    );
+
+    connection.query(query, params, (err, results) => {
+        if (results) {
+            response
+                .status(200)
+                .json({
+                    success: true,
+                    massage: "Aluno listado com sucesso!",
+                    data: results
+                })
+        } else {
+            response
+                .status(400)
+                .json({
+                    success: false,
+                    message: "Alunos não listado!",
+                    mysql: err
+                })
         }
     })
 }
@@ -86,5 +152,7 @@ async function update (request,response) {
 module.exports = {
     listarUsuarios,
     cadastrarAluno,
-    update
+    update,
+    deleteAluno,
+    listarEspecifico
 };
