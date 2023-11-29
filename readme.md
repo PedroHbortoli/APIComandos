@@ -1,4 +1,61 @@
-# Documentação da API 
+# Como subir para o git
+
+Usar o:
+```
+git add .
+```
+
+Comentar o que esta subindo com o:
+```
+git commit -m '(descrição do que esta subindo)
+```
+
+Subir para o Git com:
+```
+git add
+```
+
+# Como apagar a pasta via git bash
+
+sair da pasta com:
+```
+cd ..
+```
+
+apagar com:
+```
+rm - rf (nome da pasta)
+```
+
+# Como clonar o repositorio
+
+pegar o link do git hub que quer clonar, e usar o:
+```
+git clone (link do git)
+```
+* no git bash
+
+Abrir pasta:
+```
+cd (nome da pasta)
+```
+
+baixar arquivos com:
+```
+npm i
+```
+
+criar posta .env
+```
+touch .env
+```
+
+abrir vs code
+```
+code .
+```
+
+# Documentação para contrução da API com NodeJs
 * Escolher local do computador para criar a pasta do projeto.
 * Abrir o gitbash na pasta criada.
 ```
@@ -16,14 +73,8 @@ Iniciar o gerenciador de pacotes node.
 ```
 npm init -y
 ```
-Criar no VSCode o arquivo .gitignore: arquivos e pastas que não vão ao git hub.
-```
-touch .gitignore
-```
-Criar arquivo .env: armazernar as variaveis do ambiente.
-```
-touch .env
-```
+* Criar o arquivo package.json para gerenciar os pacotes da aplicação
+
 # Intalar pacotes da API.
 ```
 npm i express nodemon dotenv mysql2
@@ -32,6 +83,19 @@ npm i express nodemon dotenv mysql2
 * nodemon: atualizar os arquivos alterados sem parar o 
 servidor.
 * dotenv: gerenciador de variaveis do ambiente.
+* mysql2: integrar aplicação com o banco de dados 
+
+Criar no VSCode o arquivo .gitignore: arquivos e pastas que não vão ao git hub.
+```
+touch .gitignore
+```
+* Arquivo responsavel por ignorar arquivos e pastas no git hub, ou seja não serão visiveis no repositório remoto
+
+Criar arquivo .env: armazernar as variaveis do ambiente.
+```
+touch .env
+```
+* Arquivo responsavel por armazenar as variáveis de ambiente
 
 Informar arquivos  e pastas no .gitignore.
 ```
@@ -42,22 +106,23 @@ Criar pasta src para estrutura do projeto.
 ```
 mkdir src
 ```
+* Pasta responsável por organizar a estrutura da aplicação
+
 Criar o arquivo server.js na pasta src.
 ```
 touch src/server.js
 ```
-Configurar o servidor.
-```
-// importar pacote do express
-const express = require('express');
-// instanciar o express na variavel app
-const app = express();
-// importar pacote dotenv
-const dotenv = require('dotenv').config();
-// definir a porta do servidor 
-const PORT = process.env.PORT || 3001;
+* Arquivo responsável por rodar a aplicação
 
-// testar servidor 
+Colar o código de configuração no arquivo server.js
+```
+// Importar o arquivo se configuração(app.js)
+const app = require('./app');
+
+// Importar a porta do servidor 
+const PORT = app.get('port');
+
+// Testar servidor 
 app.listen(PORT, () => console.log(`Running at port ${PORT}`))
 ```
 Criar comando para rodar o servidor.
