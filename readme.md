@@ -12,7 +12,7 @@ git commit -m '(descrição do que esta subindo)
 
 Subir para o Git com:
 ```
-git add
+git push
 ```
 
 # Como apagar a pasta via git bash
@@ -95,7 +95,30 @@ Criar arquivo .env: armazernar as variaveis do ambiente.
 ```
 touch .env
 ```
-* Arquivo responsavel por armazenar as variáveis de ambiente
+
+Criar arquivo .env.example
+```
+touch .env.example
+```
+* Arquivo responsavel por definir as variáveis de ambiente sem os valores
+
+Colar as variaveis no arquivo '.env.example
+```
+# DEFINIÇÂO DA PORTA DO SErVIDor EXPRESS
+PORT =
+
+#VARIÁVEIS DE CENEXÃO COM BANCO
+DB_HOST = 
+DB_USER =
+DB_PASSWORD =
+DB_DATABASE =
+DB_PORT =
+```
+
+* Por padrão o pacote mysql2, espera a conexão com banco na porta 3306
+* Se o MySQL não esteja instalado na porta 3306, precisamos informar a porta do MySQL no aquivo '.env' e recuperar no arquivo "db.js" para o banco
+* Caso a porta do MySQL não esteja como 3306, colocar no .env 'DB_PORT', e colocar a porta que esta no MySQL detro da porta criada 
+
 
 Informar arquivos  e pastas no .gitignore.
 ```
@@ -125,10 +148,53 @@ const PORT = app.get('port');
 // Testar servidor 
 app.listen(PORT, () => console.log(`Running at port ${PORT}`))
 ```
-Criar comando para rodar o servidor.
+
+Criar o arquivo app.js na pasta src.
+```
+touch src/app.js
+```
+* Arquivo responsável por configurar a aplicação
+
+Colar o código de configuração mo arquivo 'app.js'
+```
+// Importar pacote do express
+const express = require('express');
+
+// Instanciar o express na variavel app
+const app = express();
+app.use(express.json());
+
+//Importar as rotas para serem executadas na aplicação
+const crudRouter = require('./routes/crudRouter');
+//Importar as rotas para serem executadas na aplicação
+const alunosRouter = require('./routes/alunosRouter');
+
+// Importar pacote dotenv
+const dotenv = require('dotenv').config();
+
+// Habilitar a utilização do crudRauter
+app.use('/api',crudRouter);
+// Habilitar a utilização do crudRauter
+app.use('/api',alunosRouter);
+
+// Setar a porta do servidor, a partir do arquivo .env
+app.set('port', process.env.PORT);
+
+// Exportar as configuraçãoes do app para outros arquivos acessar
+module.exports = app;
+```
+
+Criar comando para rodar o servidor no arquivo 'package.jsor'.
 ```
 "start":"nodemon src/server.js"
 ```
+* Substituiro o comando "test" dentro da chave scripts pelo comando acima
+* Este comando é responsável por rodar a API
+
+<img src ="./imagens/package_json.png">
+
+Após esta configuração o arquivo 'package.json' deve estar conforme a imagem abaixo
+
 Rodar o comando no terminal.
 ```
 npm run start
